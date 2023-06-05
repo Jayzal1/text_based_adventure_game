@@ -22,7 +22,7 @@ def do_action(action):
                 text = action_dict[element](target)
                 return True, text
 
-    return False, 'no return'
+    return False, ['no return']
 
 
 def move_to_room(target):
