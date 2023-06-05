@@ -12,14 +12,16 @@ entry.pack()
 def send_text(*args):
     text = entry.get()    # gets text from entry box
     entry.delete(0, tk.END)             # clears entry box
-    return_text = actions.do_action(text.lower())     # send text to action factory
-    label = tk.Label(root, text='command: ' + text)   # creates a new label to display command
-    label.pack()
+    return_text = actions.do_action(text)     # send text to action factory
+    return_text = return_text[1]
+    # label = tk.Label(root, text='command: ' + text)   # creates a new label to display command
+    # label.pack()
     if return_text:
-        return_label = tk.Label(root, text=return_text)
-        return_label.pack()
+        for element in return_text:
+            return_label = tk.Label(root, text=element)
+            return_label.pack()
     else:
-        print('nothing')
+        print('unrecognised command')
     root.update()
 
 

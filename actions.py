@@ -22,7 +22,7 @@ def do_action(action):
                 text = action_dict[element](target)
                 return True, text
 
-    return False
+    return False, 'no return'
 
 
 def move_to_room(target):
@@ -66,8 +66,10 @@ def print_player_location():
 
 
 def help():
-    print("this is the help section")
-    print("Type 'actions' for a list of all the commands in the game")
+    text = ['this is the help section', "Type 'actions' for a list of all the commands in the game"]
+    print(text)
+    # print("Type 'actions' for a list of all the commands in the game")
+    return text
 
 
 def check_for_action(input_action):
@@ -76,8 +78,9 @@ def check_for_action(input_action):
     return result
 
 
-def print_actions():
-    get_action_strings()
+def get_actions():
+    actions = get_action_strings()
+    return actions
 
 
 def look():
@@ -103,7 +106,7 @@ action_dict = {
         "help": help,
         "where am i?": print_player_location,
         "move to": move_to_room,
-        "actions": print_actions,
+        "actions": get_actions,
         "look": look,
         "debug": toggle_debug,
         "test function": test_function,
@@ -112,6 +115,4 @@ action_dict = {
 
 def get_action_strings():
     action_list = list(action_dict.keys())
-    for element in action_list:
-        action_dict.get(element)
-        print(element)
+    return action_list
