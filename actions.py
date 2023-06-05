@@ -1,10 +1,7 @@
-import inspect
-
 import classes
 from character_classes import current_player
 import rooms
 import config
-import display
 
 
 def do_action(action):
@@ -40,7 +37,7 @@ def move_to_room(target):
     return False
 
 
-def lookat(target):
+def look_at(target):
     current_room = current_player.current_room
     for element in current_room.items:
         if element.name == target:
@@ -102,7 +99,7 @@ def test_function():
 
 
 action_dict = {
-        "look at": lookat,
+        "look at": look_at,
         "help": help,
         "where am i?": print_player_location,
         "move to": move_to_room,
