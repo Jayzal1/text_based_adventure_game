@@ -32,12 +32,8 @@ def send_text(*args):
     if return_text:
         for index, element in enumerate(return_text):
             return_label = tk.Label(output_container, text=element)
-            return_label.grid() # (row=index, column=0)
-            # return_label.pack()
-
-    else:
-        print('unrecognised command')
-    root.update()
+            return_label.grid()
+            root.update()
 
 
 root.bind('<Return>', send_text)            # Binds the enter button

@@ -19,7 +19,7 @@ def do_action(action):
                 text = action_dict[element](target)
                 return True, text
 
-    return False, ['no return']
+    return False, [config.command_fail_text]
 
 
 def move_to_room(target):
@@ -41,15 +41,11 @@ def look_at(target):
     current_room = current_player.current_room
     for element in current_room.items:
         if element.name == target:
-            print(element.description)
-            return True
+            return [element.description]
     if target in current_player.inventory:
-        print("this is in your inventory not in the room!")
+        return "this is in your inventory not in the room!"
     elif isinstance(target, classes.Item):
-
-        print(target)
         target = str(target).replace("look at", '')
-        print(target)
         if target in current_room.items:
             print(target.description(classes.Item.description))
     else:
@@ -64,7 +60,6 @@ def print_player_location():
 
 def help():
     text = ['this is the help section', "Type 'actions' for a list of all the commands in the game"]
-    print(text)
     # print("Type 'actions' for a list of all the commands in the game")
     return text
 
@@ -82,10 +77,11 @@ def get_actions():
 
 def look():
     if not current_player.current_room.items:
-        print("you see no items around you")
+        return "you see no items around you"
+    text = ["you look around you and find the following items:"]
     for element in current_player.current_room.items:
-        print("you look around you and find the following items:")
-        print(element.name)
+        text.append(element.name)
+    return text
 
 
 def toggle_debug():
